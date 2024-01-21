@@ -347,6 +347,9 @@ class PlacesAutocomplete extends StatelessWidget {
   /// Focus node for the text field
   final FocusNode? focusNode;
 
+  /// On Back Button Pressed
+  final Function()? onBackPressed;
+
   /// Safe area parameters
   final bool bottom;
   final bool left;
@@ -432,6 +435,7 @@ class PlacesAutocomplete extends StatelessWidget {
     this.right = true,
     this.top = true,
     this.minCharsForSuggestions = 0,
+    this.onBackPressed,
   }) : super(key: key);
 
   /// Get [AutoCompleteState] for [AutoCompleteTextField]
@@ -446,8 +450,8 @@ class PlacesAutocomplete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// Get text controller from [searchController] or create new instance of [TextEditingController] if [searchController] is null or empty
-    final textController =
-        useState<TextEditingController>(searchController ?? TextEditingController());
+    final textController = useState<TextEditingController>(
+        searchController ?? TextEditingController());
     return SafeArea(
       bottom: bottom,
       left: left,
@@ -458,7 +462,7 @@ class PlacesAutocomplete extends StatelessWidget {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () {
+            onTap: onBackPressed?? () {
               Navigator.pop(context);
             },
             child: Container(
@@ -466,15 +470,13 @@ class PlacesAutocomplete extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius:
-                const BorderRadius.all(Radius.circular(6)),
+                borderRadius: const BorderRadius.all(Radius.circular(6)),
               ),
               child: Icon(
                 Icons.arrow_back_ios_new,
               ),
             ),
           ),
-          
           Expanded(
             child: Card(
               margin: topCardMargin,
@@ -483,7 +485,8 @@ class PlacesAutocomplete extends StatelessWidget {
               child: ListTile(
                 minVerticalPadding: 0,
                 contentPadding: const EdgeInsets.only(right: 4, left: 4),
-                leading: hideBackButton ? null : backButton ?? const BackButton(),
+                leading:
+                    hideBackButton ? null : backButton ?? const BackButton(),
                 title: ClipRRect(
                   borderRadius: borderRadius,
                   child: FormBuilderTypeAhead<Prediction>(
@@ -503,7 +506,8 @@ class PlacesAutocomplete extends StatelessWidget {
                               : suffixIcon,
                         ),
                     name: 'Search',
-                    controller: initialValue == null ? textController.value : null,
+                    controller:
+                        initialValue == null ? textController.value : null,
                     selectionToTextTransformer: (result) {
                       return result.description ?? "";
                     },
@@ -514,7 +518,8 @@ class PlacesAutocomplete extends StatelessWidget {
                           );
                         },
                     suggestionsCallback: (query) async {
-                      List<Prediction> predictions = await autoCompleteState().search(
+                      List<Prediction> predictions =
+                          await autoCompleteState().search(
                         query,
                         apiKey,
                         language: language,
@@ -531,12 +536,13 @@ class PlacesAutocomplete extends StatelessWidget {
                       return predictions;
                     },
                     onSuggestionSelected: (value) async {
-                      textController.value.selection =
-                          TextSelection.collapsed(offset: textController.value.text.length);
+                      textController.value.selection = TextSelection.collapsed(
+                          offset: textController.value.text.length);
                       _getDetailsByPlaceId(value.placeId ?? "", context);
                       onSuggestionSelected?.call(value);
                     },
-                    hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
+                    hideSuggestionsOnKeyboardHide:
+                        hideSuggestionsOnKeyboardHide,
                     initialValue: initialValue,
                     validator: validator,
                     suggestionsBoxDecoration: suggestionsBoxDecoration,
@@ -554,7 +560,8 @@ class PlacesAutocomplete extends StatelessWidget {
                     hideOnError: hideOnError,
                     hideOnLoading: hideOnLoading,
                     keepSuggestionsOnLoading: keepSuggestionsOnLoading,
-                    keepSuggestionsOnSuggestionSelected: keepSuggestionsOnSuggestionSelected,
+                    keepSuggestionsOnSuggestionSelected:
+                        keepSuggestionsOnSuggestionSelected,
                     loadingBuilder: loadingBuilder,
                     noItemsFoundBuilder: noItemsFoundBuilder,
                     suggestionsBoxController: suggestionsBoxController,
@@ -606,7 +613,8 @@ class PlacesAutocomplete extends StatelessWidget {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(response.errorMessage ?? "Address not found, something went wrong!"),
+              content: Text(response.errorMessage ??
+                  "Address not found, something went wrong!"),
             ),
           );
         }

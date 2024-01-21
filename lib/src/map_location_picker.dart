@@ -198,6 +198,8 @@ class MapLocationPicker extends StatefulWidget {
   /// Defaults to 0
   final int minCharsForSuggestions;
 
+  final Function()? onBackPressed;
+
   const MapLocationPicker({
     Key? key,
     this.desiredAccuracy = LocationAccuracy.high,
@@ -265,8 +267,9 @@ class MapLocationPicker extends StatefulWidget {
     this.onDecodeAddress,
     this.focusNode,
     this.fabTooltip = 'My Location',
-    this.fabIcon =  Icons.my_location,
-    this.minCharsForSuggestions = 0
+    this.fabIcon = Icons.my_location,
+    this.minCharsForSuggestions = 0,
+    this.onBackPressed,
   }) : super(key: key);
 
   @override
@@ -374,6 +377,7 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 PlacesAutocomplete(
+                  onBackPressed: widget.onBackPressed,
                   focusNode: widget.focusNode,
                   bottom: widget.bottom,
                   left: widget.left,
