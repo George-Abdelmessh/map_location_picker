@@ -496,6 +496,7 @@ class PlacesAutocomplete extends StatelessWidget {
                           suffixIcon: (showClearButton && initialValue == null)
                               ? IconButton(
                                   icon: const Icon(Icons.close),
+                                  color: Color(0xff9999A7),
                                   onPressed: () => textController.value.clear(),
                                 )
                               : suffixIcon,
