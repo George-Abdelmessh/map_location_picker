@@ -463,22 +463,14 @@ class PlacesAutocomplete extends StatelessWidget {
             },
             child: Container(
               padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius:
                 const BorderRadius.all(Radius.circular(6)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xff9999A7).withOpacity(0.3),
-                    offset: const Offset(0, 0),
-                    blurRadius: 5,
-                    // spreadRadius: 1.5,
-                  )
-                ],
               ),
               child: Icon(
                 Icons.arrow_back_ios_new,
-                size: 15,
               ),
             ),
           ),
