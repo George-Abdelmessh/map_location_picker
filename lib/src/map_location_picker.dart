@@ -402,26 +402,26 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                     ),
                     Row(
                       children: [
-                        Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              margin: const EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                const BorderRadius.all(Radius.circular(6)),
-                              ),
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                // size: 15,
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Center(
+                        //   child: GestureDetector(
+                        //     onTap: () {
+                        //       Navigator.pop(context);
+                        //     },
+                        //     child: Container(
+                        //       padding: const EdgeInsets.all(8),
+                        //       margin: const EdgeInsets.symmetric(horizontal: 10),
+                        //       decoration: BoxDecoration(
+                        //         color: Colors.white,
+                        //         borderRadius:
+                        //         const BorderRadius.all(Radius.circular(6)),
+                        //       ),
+                        //       child: Icon(
+                        //         Icons.arrow_back_ios_new,
+                        //         // size: 15,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         // SizedBox(width: 10),
                         Expanded(child: PlacesAutocomplete(
                           focusNode: widget.focusNode,
