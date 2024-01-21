@@ -198,76 +198,76 @@ class MapLocationPicker extends StatefulWidget {
   /// Defaults to 0
   final int minCharsForSuggestions;
 
-  const MapLocationPicker(
-      {Key? key,
-      this.desiredAccuracy = LocationAccuracy.high,
-      required this.apiKey,
-      this.geoCodingBaseUrl,
-      this.geoCodingHttpClient,
-      this.geoCodingApiHeaders,
-      this.language,
-      this.locationType = const [],
-      this.resultType = const [],
-      this.minMaxZoomPreference = const MinMaxZoomPreference(0, 16),
-      this.padding = const EdgeInsets.all(0),
-      this.compassEnabled = true,
-      this.liteModeEnabled = false,
-      this.topCardMargin = const EdgeInsets.all(8),
-      this.topCardColor,
-      this.topCardShape = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-      ),
-      this.borderRadius = const BorderRadius.all(Radius.circular(12)),
-      this.searchHintText = "Start typing to search",
-      this.bottomCardShape = const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-      ),
-      this.bottomCardMargin = const EdgeInsets.fromLTRB(8, 8, 8, 16),
-      this.bottomCardIcon = const Icon(Icons.send),
-      this.bottomCardTooltip = "Continue with this location",
-      this.bottomCardColor,
-      this.hasLocationPermission = true,
-      this.getLocation,
-      this.onSuggestionSelected,
-      this.onNext,
-      this.currentLatLng = const LatLng(28.8993468, 76.6250249),
-      this.hideBackButton = false,
-      this.popOnNextButtonTaped = false,
-      this.backButton,
-      this.hideMoreOptions = false,
-      this.dialogTitle = 'You can also use the following options',
-      this.placesHttpClient,
-      this.placesApiHeaders,
-      this.placesBaseUrl,
-      this.sessionToken,
-      this.offset,
-      this.origin,
-      this.location,
-      this.radius,
-      this.region,
-      this.fields = const [],
-      this.types = const [],
-      this.components = const [],
-      this.strictbounds = false,
-      this.hideSuggestionsOnKeyboardHide = false,
-      this.mapType = MapType.normal,
-      this.searchController,
-      this.additionalMarkers,
-      this.bottom = true,
-      this.left = true,
-      this.maintainBottomViewPadding = false,
-      this.minimum = EdgeInsets.zero,
-      this.right = true,
-      this.top = true,
-      this.hideLocationButton = false,
-      this.hideMapTypeButton = false,
-      this.hideBottomCard = false,
-      this.onDecodeAddress,
-      this.focusNode,
-      this.fabTooltip = 'My Location',
-      this.fabIcon = Icons.my_location,
-      this.minCharsForSuggestions = 0})
-      : super(key: key);
+  const MapLocationPicker({
+    Key? key,
+    this.desiredAccuracy = LocationAccuracy.high,
+    required this.apiKey,
+    this.geoCodingBaseUrl,
+    this.geoCodingHttpClient,
+    this.geoCodingApiHeaders,
+    this.language,
+    this.locationType = const [],
+    this.resultType = const [],
+    this.minMaxZoomPreference = const MinMaxZoomPreference(0, 16),
+    this.padding = const EdgeInsets.all(0),
+    this.compassEnabled = true,
+    this.liteModeEnabled = false,
+    this.topCardMargin = const EdgeInsets.all(8),
+    this.topCardColor,
+    this.topCardShape = const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+    ),
+    this.borderRadius = const BorderRadius.all(Radius.circular(12)),
+    this.searchHintText = "Start typing to search",
+    this.bottomCardShape = const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+    ),
+    this.bottomCardMargin = const EdgeInsets.fromLTRB(8, 8, 8, 16),
+    this.bottomCardIcon = const Icon(Icons.send),
+    this.bottomCardTooltip = "Continue with this location",
+    this.bottomCardColor,
+    this.hasLocationPermission = true,
+    this.getLocation,
+    this.onSuggestionSelected,
+    this.onNext,
+    this.currentLatLng = const LatLng(28.8993468, 76.6250249),
+    this.hideBackButton = false,
+    this.popOnNextButtonTaped = false,
+    this.backButton,
+    this.hideMoreOptions = false,
+    this.dialogTitle = 'You can also use the following options',
+    this.placesHttpClient,
+    this.placesApiHeaders,
+    this.placesBaseUrl,
+    this.sessionToken,
+    this.offset,
+    this.origin,
+    this.location,
+    this.radius,
+    this.region,
+    this.fields = const [],
+    this.types = const [],
+    this.components = const [],
+    this.strictbounds = false,
+    this.hideSuggestionsOnKeyboardHide = false,
+    this.mapType = MapType.normal,
+    this.searchController,
+    this.additionalMarkers,
+    this.bottom = true,
+    this.left = true,
+    this.maintainBottomViewPadding = false,
+    this.minimum = EdgeInsets.zero,
+    this.right = true,
+    this.top = true,
+    this.hideLocationButton = false,
+    this.hideMapTypeButton = false,
+    this.hideBottomCard = false,
+    this.onDecodeAddress,
+    this.focusNode,
+    this.fabTooltip = 'My Location',
+    this.fabIcon =  Icons.my_location,
+    this.minCharsForSuggestions = 0
+  }) : super(key: key);
 
   @override
   State<MapLocationPicker> createState() => _MapLocationPickerState();
@@ -373,141 +373,72 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(6)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0xff9999A7).withOpacity(0.3),
-                              offset: const Offset(0, 0),
-                              blurRadius: 5,
-                              // spreadRadius: 1.5,
-                            )
-                          ],
-                        ),
-                        child: Icon(
-                          Icons.arrow_back_ios_new,
-                          size: 15,
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(6)),
-                              ),
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                // size: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-                        // SizedBox(width: 10),
-                        Expanded(
-                          child: Container(
-                            height: 50,
-                            color: Colors.red,
-                          ),
-                          // child: PlacesAutocomplete(
-                          //   focusNode: widget.focusNode,
-                          //   bottom: widget.bottom,
-                          //   left: widget.left,
-                          //   maintainBottomViewPadding:
-                          //       widget.maintainBottomViewPadding,
-                          //   minimum: widget.minimum,
-                          //   right: widget.right,
-                          //   top: widget.top,
-                          //   apiKey: widget.apiKey,
-                          //   mounted: mounted,
-                          //   searchController: _searchController,
-                          //   borderRadius: widget.borderRadius,
-                          //   offset: widget.offset,
-                          //   radius: widget.radius,
-                          //   backButton: widget.backButton,
-                          //   components: widget.components,
-                          //   fields: widget.fields,
-                          //   hideSuggestionsOnKeyboardHide:
-                          //       widget.hideSuggestionsOnKeyboardHide,
-                          //   language: widget.language,
-                          //   location: widget.location,
-                          //   origin: widget.origin,
-                          //   placesApiHeaders: widget.placesApiHeaders,
-                          //   placesBaseUrl: widget.placesBaseUrl,
-                          //   placesHttpClient: widget.placesHttpClient,
-                          //   region: widget.region,
-                          //   searchHintText: widget.searchHintText,
-                          //   sessionToken: widget.sessionToken,
-                          //   hideBackButton: widget.hideBackButton,
-                          //   strictbounds: widget.strictbounds,
-                          //   topCardColor: widget.topCardColor,
-                          //   topCardMargin: widget.topCardMargin,
-                          //   topCardShape: widget.topCardShape,
-                          //   types: widget.types,
-                          //   minCharsForSuggestions:
-                          //       widget.minCharsForSuggestions,
-                          //   onGetDetailsByPlaceId: (placesDetails) async {
-                          //     if (placesDetails == null) {
-                          //       logger.e("placesDetails is null");
-                          //       return;
-                          //     }
-                          //     _initialPosition = LatLng(
-                          //       placesDetails.result.geometry?.location.lat ??
-                          //           0,
-                          //       placesDetails.result.geometry?.location.lng ??
-                          //           0,
-                          //     );
-                          //     final controller = await _controller.future;
-                          //     controller.animateCamera(
-                          //         CameraUpdate.newCameraPosition(
-                          //             cameraPosition()));
-                          //     _address =
-                          //         placesDetails.result.formattedAddress ?? "";
-                          //     widget.onSuggestionSelected?.call(placesDetails);
-                          //     _geocodingResult = GeocodingResult(
-                          //       geometry: placesDetails.result.geometry!,
-                          //       placeId: placesDetails.result.placeId,
-                          //       addressComponents:
-                          //           placesDetails.result.addressComponents,
-                          //       formattedAddress:
-                          //           placesDetails.result.formattedAddress,
-                          //       types: placesDetails.result.types,
-                          //     );
-                          //
-                          //     // updating the suggestion box modal data
-                          //     _decodeAddress(
-                          //       Location(
-                          //           lat: _initialPosition.latitude,
-                          //           lng: _initialPosition.longitude),
-                          //     );
-                          //
-                          //     setState(() {});
-                          //   },
-                          // ),
-                        ),
-                      ],
-                    ),
-                  ],
+                PlacesAutocomplete(
+                  focusNode: widget.focusNode,
+                  bottom: widget.bottom,
+                  left: widget.left,
+                  maintainBottomViewPadding: widget.maintainBottomViewPadding,
+                  minimum: widget.minimum,
+                  right: widget.right,
+                  top: widget.top,
+                  apiKey: widget.apiKey,
+                  mounted: mounted,
+                  searchController: _searchController,
+                  borderRadius: widget.borderRadius,
+                  offset: widget.offset,
+                  radius: widget.radius,
+                  backButton: widget.backButton,
+                  components: widget.components,
+                  fields: widget.fields,
+                  hideSuggestionsOnKeyboardHide:
+                      widget.hideSuggestionsOnKeyboardHide,
+                  language: widget.language,
+                  location: widget.location,
+                  origin: widget.origin,
+                  placesApiHeaders: widget.placesApiHeaders,
+                  placesBaseUrl: widget.placesBaseUrl,
+                  placesHttpClient: widget.placesHttpClient,
+                  region: widget.region,
+                  searchHintText: widget.searchHintText,
+                  sessionToken: widget.sessionToken,
+                  hideBackButton: widget.hideBackButton,
+                  strictbounds: widget.strictbounds,
+                  topCardColor: widget.topCardColor,
+                  topCardMargin: widget.topCardMargin,
+                  topCardShape: widget.topCardShape,
+                  types: widget.types,
+                  minCharsForSuggestions: widget.minCharsForSuggestions,
+                  onGetDetailsByPlaceId: (placesDetails) async {
+                    if (placesDetails == null) {
+                      logger.e("placesDetails is null");
+                      return;
+                    }
+                    _initialPosition = LatLng(
+                      placesDetails.result.geometry?.location.lat ?? 0,
+                      placesDetails.result.geometry?.location.lng ?? 0,
+                    );
+                    final controller = await _controller.future;
+                    controller.animateCamera(
+                        CameraUpdate.newCameraPosition(cameraPosition()));
+                    _address = placesDetails.result.formattedAddress ?? "";
+                    widget.onSuggestionSelected?.call(placesDetails);
+                    _geocodingResult = GeocodingResult(
+                      geometry: placesDetails.result.geometry!,
+                      placeId: placesDetails.result.placeId,
+                      addressComponents: placesDetails.result.addressComponents,
+                      formattedAddress: placesDetails.result.formattedAddress,
+                      types: placesDetails.result.types,
+                    );
+
+                    // updating the suggestion box modal data
+                    _decodeAddress(
+                      Location(
+                          lat: _initialPosition.latitude,
+                          lng: _initialPosition.longitude),
+                    );
+
+                    setState(() {});
+                  },
                 ),
                 Spacer(),
                 if (!widget.hideMapTypeButton)

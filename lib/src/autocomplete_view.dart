@@ -455,99 +455,131 @@ class PlacesAutocomplete extends StatelessWidget {
       minimum: minimum,
       right: right,
       top: top,
-      child: Card(
-        margin: topCardMargin,
-        shape: topCardShape,
-        color: topCardColor,
-        child: ListTile(
-          minVerticalPadding: 0,
-          contentPadding: const EdgeInsets.only(right: 4, left: 4),
-          leading: hideBackButton ? null : backButton ?? const BackButton(),
-          title: ClipRRect(
-            borderRadius: borderRadius,
-            child: FormBuilderTypeAhead<Prediction>(
-              minCharsForSuggestions: minCharsForSuggestions,
-              decoration: decoration ??
-                  InputDecoration(
-                    hintText: searchHintText,
-                    border: InputBorder.none,
-                    filled: true,
-                    suffixIcon: (showClearButton && initialValue == null)
-                        ? IconButton(
-                            icon: const Icon(Icons.close),
-                            onPressed: () => textController.value.clear(),
-                          )
-                        : suffixIcon,
-                  ),
-              name: 'Search',
-              controller: initialValue == null ? textController.value : null,
-              selectionToTextTransformer: (result) {
-                return result.description ?? "";
-              },
-              itemBuilder: itemBuilder ??
-                  (context, content) {
-                    return ListTile(
-                      title: Text(content.description ?? ""),
-                    );
-                  },
-              suggestionsCallback: (query) async {
-                List<Prediction> predictions = await autoCompleteState().search(
-                  query,
-                  apiKey,
-                  language: language,
-                  sessionToken: sessionToken,
-                  region: region,
-                  components: components,
-                  location: location,
-                  offset: offset,
-                  origin: origin,
-                  radius: radius,
-                  strictbounds: strictbounds,
-                  types: types,
-                );
-                return predictions;
-              },
-              onSuggestionSelected: (value) async {
-                textController.value.selection =
-                    TextSelection.collapsed(offset: textController.value.text.length);
-                _getDetailsByPlaceId(value.placeId ?? "", context);
-                onSuggestionSelected?.call(value);
-              },
-              hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
-              initialValue: initialValue,
-              validator: validator,
-              suggestionsBoxDecoration: suggestionsBoxDecoration,
-              scrollController: scrollController,
-              animationDuration: animationDuration,
-              animationStart: animationStart,
-              autoFlipDirection: autoFlipDirection,
-              debounceDuration: debounceDuration,
-              direction: direction,
-              errorBuilder: errorBuilder,
-              focusNode: focusNode,
-              getImmediateSuggestions: getImmediateSuggestions,
-              hideKeyboard: hideKeyboard,
-              hideOnEmpty: hideOnEmpty,
-              hideOnError: hideOnError,
-              hideOnLoading: hideOnLoading,
-              keepSuggestionsOnLoading: keepSuggestionsOnLoading,
-              keepSuggestionsOnSuggestionSelected: keepSuggestionsOnSuggestionSelected,
-              loadingBuilder: loadingBuilder,
-              noItemsFoundBuilder: noItemsFoundBuilder,
-              suggestionsBoxController: suggestionsBoxController,
-              suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
-              textFieldConfiguration: textFieldConfiguration,
-              transitionBuilder: transitionBuilder,
-              valueTransformer: valueTransformer,
-              enabled: enabled,
-              autovalidateMode: autovalidateMode,
-              onChanged: onChanged,
-              onReset: onReset,
-              onSaved: onSaved,
-              key: key,
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius:
+                const BorderRadius.all(Radius.circular(6)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xff9999A7).withOpacity(0.3),
+                    offset: const Offset(0, 0),
+                    blurRadius: 5,
+                    // spreadRadius: 1.5,
+                  )
+                ],
+              ),
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                size: 15,
+              ),
             ),
           ),
-        ),
+          
+          Expanded(
+            child: Card(
+              margin: topCardMargin,
+              shape: topCardShape,
+              color: topCardColor,
+              child: ListTile(
+                minVerticalPadding: 0,
+                contentPadding: const EdgeInsets.only(right: 4, left: 4),
+                leading: hideBackButton ? null : backButton ?? const BackButton(),
+                title: ClipRRect(
+                  borderRadius: borderRadius,
+                  child: FormBuilderTypeAhead<Prediction>(
+                    minCharsForSuggestions: minCharsForSuggestions,
+                    decoration: decoration ??
+                        InputDecoration(
+                          hintText: searchHintText,
+                          border: InputBorder.none,
+                          filled: true,
+                          suffixIcon: (showClearButton && initialValue == null)
+                              ? IconButton(
+                                  icon: const Icon(Icons.close),
+                                  onPressed: () => textController.value.clear(),
+                                )
+                              : suffixIcon,
+                        ),
+                    name: 'Search',
+                    controller: initialValue == null ? textController.value : null,
+                    selectionToTextTransformer: (result) {
+                      return result.description ?? "";
+                    },
+                    itemBuilder: itemBuilder ??
+                        (context, content) {
+                          return ListTile(
+                            title: Text(content.description ?? ""),
+                          );
+                        },
+                    suggestionsCallback: (query) async {
+                      List<Prediction> predictions = await autoCompleteState().search(
+                        query,
+                        apiKey,
+                        language: language,
+                        sessionToken: sessionToken,
+                        region: region,
+                        components: components,
+                        location: location,
+                        offset: offset,
+                        origin: origin,
+                        radius: radius,
+                        strictbounds: strictbounds,
+                        types: types,
+                      );
+                      return predictions;
+                    },
+                    onSuggestionSelected: (value) async {
+                      textController.value.selection =
+                          TextSelection.collapsed(offset: textController.value.text.length);
+                      _getDetailsByPlaceId(value.placeId ?? "", context);
+                      onSuggestionSelected?.call(value);
+                    },
+                    hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
+                    initialValue: initialValue,
+                    validator: validator,
+                    suggestionsBoxDecoration: suggestionsBoxDecoration,
+                    scrollController: scrollController,
+                    animationDuration: animationDuration,
+                    animationStart: animationStart,
+                    autoFlipDirection: autoFlipDirection,
+                    debounceDuration: debounceDuration,
+                    direction: direction,
+                    errorBuilder: errorBuilder,
+                    focusNode: focusNode,
+                    getImmediateSuggestions: getImmediateSuggestions,
+                    hideKeyboard: hideKeyboard,
+                    hideOnEmpty: hideOnEmpty,
+                    hideOnError: hideOnError,
+                    hideOnLoading: hideOnLoading,
+                    keepSuggestionsOnLoading: keepSuggestionsOnLoading,
+                    keepSuggestionsOnSuggestionSelected: keepSuggestionsOnSuggestionSelected,
+                    loadingBuilder: loadingBuilder,
+                    noItemsFoundBuilder: noItemsFoundBuilder,
+                    suggestionsBoxController: suggestionsBoxController,
+                    suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
+                    textFieldConfiguration: textFieldConfiguration,
+                    transitionBuilder: transitionBuilder,
+                    valueTransformer: valueTransformer,
+                    enabled: enabled,
+                    autovalidateMode: autovalidateMode,
+                    onChanged: onChanged,
+                    onReset: onReset,
+                    onSaved: onSaved,
+                    key: key,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
