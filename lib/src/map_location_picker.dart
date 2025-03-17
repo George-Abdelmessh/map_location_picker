@@ -490,8 +490,7 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                       ),
                     ),
                   ),
-                if (!widget.hideLocationButton)
-                  FloatingActionButton(
+                
                       tooltip: widget.fabTooltip,
                       backgroundColor: Theme.of(context).primaryColor,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
