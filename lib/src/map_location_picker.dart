@@ -538,73 +538,73 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                     ),
                   ),
 
-                // if (!widget.hideBottomCard)
-                //   Card(
-                //     margin: widget.bottomCardMargin,
-                //     shape: widget.bottomCardShape,
-                //     color: widget.bottomCardColor,
-                //     child: Column(
-                //       mainAxisSize: MainAxisSize.min,
-                //       children: [
-                //         ListTile(
-                //           title: Text(_address),
-                //           trailing: IconButton(
-                //             tooltip: widget.bottomCardTooltip,
-                //             icon: widget.bottomCardIcon,
-                //             onPressed: () async {
-                //               widget.onNext?.call(_geocodingResult);
-                //               if (widget.popOnNextButtonTaped) {
-                //                 Navigator.pop(context, _geocodingResult);
-                //               }
-                //             },
-                //           ),
-                //         ),
-                //         if (!widget.hideMoreOptions &&
-                //             _geocodingResultList.isNotEmpty)
-                //           GestureDetector(
-                //             onTap: () {
-                //               showDialog(
-                //                 context: context,
-                //                 builder: (context) => AlertDialog(
-                //                   title: Text(widget.dialogTitle),
-                //                   scrollable: true,
-                //                   content: Column(
-                //                     mainAxisSize: MainAxisSize.min,
-                //                     children:
-                //                         _geocodingResultList.map((element) {
-                //                       return ListTile(
-                //                         title: Text(
-                //                             element.formattedAddress ?? ""),
-                //                         onTap: () {
-                //                           _address =
-                //                               element.formattedAddress ?? "";
-                //                           _geocodingResult = element;
-                //                           setState(() {});
-                //                           Navigator.pop(context, element);
-                //                         },
-                //                       );
-                //                     }).toList(),
-                //                   ),
-                //                   actions: [
-                //                     TextButton(
-                //                       child: const Text('Cancel'),
-                //                       onPressed: () {
-                //                         Navigator.pop(context);
-                //                       },
-                //                     ),
-                //                   ],
-                //                 ),
-                //               );
-                //             },
-                //             child: Chip(
-                //               label: Text(
-                //                 "Tap to show ${(_geocodingResultList.length - 1)} more result options",
-                //               ),
-                //             ),
-                //           ),
-                //       ],
-                //     ),
-                //   ),
+                if (!widget.hideBottomCard)
+                  Card(
+                    margin: widget.bottomCardMargin,
+                    shape: widget.bottomCardShape,
+                    color: widget.bottomCardColor,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          title: Text(_address),
+                          trailing: IconButton(
+                            tooltip: widget.bottomCardTooltip,
+                            icon: widget.bottomCardIcon,
+                            onPressed: () async {
+                              widget.onNext?.call(_geocodingResult);
+                              if (widget.popOnNextButtonTaped) {
+                                Navigator.pop(context, _geocodingResult);
+                              }
+                            },
+                          ),
+                        ),
+                        if (!widget.hideMoreOptions &&
+                            _geocodingResultList.isNotEmpty)
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Text(widget.dialogTitle),
+                                  scrollable: true,
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children:
+                                        _geocodingResultList.map((element) {
+                                      return ListTile(
+                                        title: Text(
+                                            element.formattedAddress ?? ""),
+                                        onTap: () {
+                                          _address =
+                                              element.formattedAddress ?? "";
+                                          _geocodingResult = element;
+                                          setState(() {});
+                                          Navigator.pop(context, element);
+                                        },
+                                      );
+                                    }).toList(),
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      child: const Text('Cancel'),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            child: Chip(
+                              label: Text(
+                                "Tap to show ${(_geocodingResultList.length - 1)} more result options",
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
               ],
             ),
           ],
