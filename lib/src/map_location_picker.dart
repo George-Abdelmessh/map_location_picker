@@ -491,9 +491,7 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                     ),
                   ),
                 if (!widget.hideLocationButton)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FloatingActionButton(
+                  FloatingActionButton(
                       tooltip: widget.fabTooltip,
                       backgroundColor: Theme.of(context).primaryColor,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -529,7 +527,6 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                       },
                       child: Icon(widget.fabIcon),
                     ),
-                  ),
                 if (!widget.hideBottomCard)
                   Card(
                     margin: widget.bottomCardMargin,
