@@ -491,45 +491,48 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                     ),
                   ),
                 if (!widget.hideLocationButton)
-                  InkWell(
-                    onTap: () async {
-                      // call parent method
-                      if (widget.getLocation != null) {
-                        widget.getLocation!.call();
-                      }
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: InkWell(
+                      onTap: () async {
+                        // call parent method
+                        if (widget.getLocation != null) {
+                          widget.getLocation!.call();
+                        }
 
-                      if (widget.hasLocationPermission) {
-                        await Geolocator.requestPermission();
-                        Position position = await Geolocator.getCurrentPosition(
-                          desiredAccuracy: widget.desiredAccuracy,
-                        );
-                        LatLng latLng =
-                            LatLng(position.latitude, position.longitude);
-                        _initialPosition = latLng;
-                        final controller = await _controller.future;
-                        controller.animateCamera(
-                          CameraUpdate.newCameraPosition(
-                            cameraPosition(),
-                          ),
-                        );
-                        _decodeAddress(
-                          Location(
-                            lat: position.latitude,
-                            lng: position.longitude,
-                          ),
-                        );
-                        setState(() {});
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: Icon(
-                        Icons.my_location_outlined,
-                        color: Color(0xff00086D),
+                        if (widget.hasLocationPermission) {
+                          await Geolocator.requestPermission();
+                          Position position = await Geolocator.getCurrentPosition(
+                            desiredAccuracy: widget.desiredAccuracy,
+                          );
+                          LatLng latLng =
+                              LatLng(position.latitude, position.longitude);
+                          _initialPosition = latLng;
+                          final controller = await _controller.future;
+                          controller.animateCamera(
+                            CameraUpdate.newCameraPosition(
+                              cameraPosition(),
+                            ),
+                          );
+                          _decodeAddress(
+                            Location(
+                              lat: position.latitude,
+                              lng: position.longitude,
+                            ),
+                          );
+                          setState(() {});
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Icon(
+                          Icons.my_location_outlined,
+                          color: Color(0xff00086D),
+                        ),
                       ),
                     ),
                   ),
